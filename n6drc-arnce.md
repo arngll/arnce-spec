@@ -492,6 +492,6 @@ interim, assume EUI-64.
 
 # References and Links
 
- * [Amateur Radio Next Generation Link Layer (ARNGLL)](https://gist.github.com/darconeous/e1c7c352098671a36230)
+ * [Amateur Radio Next Generation Link Layer (ARNGLL)](https://github.com/arngll/arngll-spec)
  *  <http://www.ng3k.com/Dxcc/dxcc.html>
  *  <https://tools.ietf.org/html/rfc5234>

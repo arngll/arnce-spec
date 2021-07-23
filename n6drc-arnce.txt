@@ -584,7 +584,7 @@ Quattlebaum             Expires December 25, 2021              [Page 10]
 
    [1] https://creativecommons.org/licenses/by/4.0/
 
-   [2] https://gist.github.com/darconeous/e1c7c352098671a36230
+   [2] https://github.com/arngll/arngll-spec
 
    [3] http://www.ng3k.com/Dxcc/dxcc.html
 
