@@ -1,6 +1,6 @@
+use anyhow::{bail, format_err};
 use std::convert::TryInto;
 use std::fmt;
-use anyhow::{bail, format_err};
 
 type Result<T> = std::result::Result<T, anyhow::Error>;
 
