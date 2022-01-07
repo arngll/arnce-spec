@@ -15,15 +15,17 @@ impl Eui48 {
     }
 }
 /// Converts an Eui48 into a HamAddr
-impl Into<HamAddr> for Eui48 {
-    fn into(self: Self) -> HamAddr {
+impl TryInto<HamAddr> for Eui48 {
+    type Error = anyhow::Error;
+    // TODO(cross): Add error checking.
+    fn try_into(self: Self) -> Result<HamAddr> {
         let mut octets = self.0;
         octets[0] &= 0b1111_1101;
         octets.rotate_left(1);
         let mut bytes = [0; 8];
         bytes[..6].copy_from_slice(&octets);
         let addr = u64::from_be_bytes(bytes);
-        HamAddr(addr)
+        Ok(HamAddr(addr))
     }
 }
 
@@ -63,8 +65,10 @@ impl fmt::Display for Eui64 {
 }
 
 /// Converts an Eui64 into a HamAddr.
-impl Into<HamAddr> for Eui64 {
-    fn into(self: Self) -> HamAddr {
+impl TryInto<HamAddr> for Eui64 {
+    type Error = anyhow::Error;
+    // TODO(cross): Add error checking.
+    fn try_into(self: Self) -> Result<HamAddr> {
         let mut bytes = self.0;
         bytes[0] &= 0b1111_1101;
         if bytes[3] == 0xFF && bytes[4] == 0xFE {
@@ -76,7 +80,7 @@ impl Into<HamAddr> for Eui64 {
             bytes.rotate_left(1);
         }
         let addr = u64::from_be_bytes(bytes);
-        HamAddr(addr)
+        Ok(HamAddr(addr))
     }
 }
 
@@ -284,7 +288,7 @@ mod ham_addr_tests {
         let addr = HamAddr::parse_callsign("KZ2X-1").unwrap();
         let eui64: Eui64 = addr.try_into().unwrap();
         assert_eq!(eui64.to_string(), "02:48:ed:ff:fe:9c:0c:00");
-        let addr: HamAddr = eui64.into();
+        let addr: HamAddr = eui64.try_into().unwrap();
         assert_eq!(addr.to_callsign(), "KZ2X-1");
         let eui64: Eui64 = addr.try_into().unwrap();
         assert_eq!(eui64.to_string(), "02:48:ed:ff:fe:9c:0c:00");
@@ -300,7 +304,7 @@ mod ham_addr_tests {
         let addr = HamAddr::parse_callsign("VI2BMARC50").unwrap();
         let eui64: Eui64 = addr.try_into().unwrap();
         assert_eq!(eui64.to_string(), "c2:8b:05:0e:89:71:18:a8");
-        let addr: HamAddr = eui64.into();
+        let addr: HamAddr = eui64.try_into().unwrap();
         assert_eq!(addr.to_callsign(), "VI2BMARC50");
         let eui64: Eui64 = addr.try_into().unwrap();
         assert_eq!(eui64.to_string(), "c2:8b:05:0e:89:71:18:a8");
@@ -312,7 +316,7 @@ mod ham_addr_tests {
         let eui48: Eui48 = addr.try_into().unwrap();
         assert_eq!(eui48.to_string(), "02:48:ed:9c:0c:00");
 
-        let addr: HamAddr = eui48.into();
+        let addr: HamAddr = eui48.try_into().unwrap();
         assert_eq!(addr.to_callsign(), "KZ2X-1");
 
         let addr = HamAddr::parse_callsign("AC2OI").unwrap();
@@ -322,13 +326,13 @@ mod ham_addr_tests {
         let addr = HamAddr::parse_callsign("WB3KUZ-1").unwrap();
         let eui48: Eui48 = addr.try_into().unwrap();
         assert_eq!(eui48.to_string(), "e2:90:2e:48:22:f1");
-        let addr: HamAddr = eui48.into();
+        let addr: HamAddr = eui48.try_into().unwrap();
         assert_eq!(addr.to_callsign(), "WB3KUZ-1");
 
         let addr = HamAddr::parse_callsign("NA1SS").unwrap();
         let eui48: Eui48 = addr.try_into().unwrap();
         assert_eq!(eui48.to_string(), "02:57:c4:79:b8:00");
-        let addr: HamAddr = eui48.into();
+        let addr: HamAddr = eui48.try_into().unwrap();
         assert_eq!(addr.to_callsign(), "NA1SS");
 
         let addr = HamAddr::parse_callsign("VI2BMARC50").unwrap();
