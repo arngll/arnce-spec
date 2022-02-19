@@ -94,7 +94,7 @@ encoded as plain ASCII text, which is hardly the most compact
 encoding.
 
 Naively encoding a six-character callsign using ASCII requires at
-least 48 bits. However if we encoded each character using just six
+least 48 bits. However, if we encoded each character using just six
 bits, this would make a six-character callsign take up only 36 bits.
 This is certainly an improvement, but we can still do better!
 
@@ -194,8 +194,8 @@ HAM-64 is a new link-layer addressing format, similar in purpose to
 the ubiquitous EUI-48 and EUI-64 address standards. It was specifically
 designed for compactness and encoding clarity. It's features include:
 
-*   Callsigns can be up to 12 characters long, allowing for long
-    complex callsigns
+*   Callsigns can be up to 12 characters long (allowing for long
+    complex callsigns)
 *   Variable length encoding, allowing for 16-bit, 32-bit, 48-bit, and
     64-bit representations of 3, 6, 9, and 12 character callsigns
 *   Broadcast and multicast addressing
@@ -493,5 +493,6 @@ interim, assume EUI-64.
 # References and Links
 
  * [Amateur Radio Next Generation Link Layer (ARNGLL)](https://github.com/arngll/arngll-spec)
- *  <http://www.ng3k.com/Dxcc/dxcc.html>
- *  <https://tools.ietf.org/html/rfc5234>
+ * <https://arngll.org/>
+ * <http://www.ng3k.com/Dxcc/dxcc.html>
+ * <https://tools.ietf.org/html/rfc5234>

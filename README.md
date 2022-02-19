@@ -1,15 +1,25 @@
 Amateur Radio Numeric Callsign Encoding (README)
 ================================================
 
-This is the repository for the [ham-address specification
-(HAM-64)](n6drc-arnce.md) ([HTML](n6drc-arnce.html) |
-[TXT](n6drc-arnce.txt) | [XML](n6drc-arnce.xml)), which specifies a
-way for efficiently and reversably encoding radio callsigns into
-numberic identifiers, which may then be used as addresses for packet
-radio or other purposes.
+The Amateur Radio Numeric Callsign Encoding (ARNCE) is a mechanism
+for any radio callsign of up to 12 characters to be encoded into 8 bytes(or
+less). These numeric "ham addresses" can also be translated to EUI-48 and EUI-64
+addresses, which can be useful when operating consumer Wi-Fi equipment
+under Amateur Radio rules. It can also be useful for encoding short
+text identifiers into MAC addresses in non-radio contexts.
 
-Click on [this link](https://rawgit.com/arngll/arnce-spec/main/n6drc-arnce.html)
-to view the most recent HTML version of the specification.
+Examples:
+
+| Callsign   | HamAddr               | EUI-48              | EUI-64                    |
+|------------|-----------------------|---------------------|---------------------------|
+| N6DRC      | `5CAC-70F8`           | `02:5C:AC:70:F8:00` | `02:5C:AC:FF:FE:70:F8:00` |
+| KJ6QOH/P   | `4671-6CA0-F000`      | `02:46:71:6C:A0:F0` | `02:46:71:FF:FE:6C:A0:F0` |
+| VI2BMARC50 | `8B05-0E89-7118-A8C0` | N/A                 | `C2:8B:05:0E:89:71:18:A8` |
+
+The mechanism for reversibly translating callsigns into numeric identifiers
+is outlined in the [ham-address specification (HAM-64)](n6drc-arnce.md#introduction),
+included in this repository. Also included in this repository are shell scripts
+which can be used to convert between all of these address formats.
 
 The original source of the specification is in the file [`n6drc-arnce.md`](n6drc-arnce.md),
 which is formatted in [mmark syntax](https://github.com/miekg/mmark/wiki/Syntax) (vaguely
@@ -26,6 +36,8 @@ languages. Currently, reference implementations in the following
 languages are included:
 
  * Standard unix shell sript (`/bin/sh`)
+
+A implementation in Rust is available [here](https://github.com/arngll/arngll-rust/tree/main/hamaddr).
 
 ## See also ##
 
