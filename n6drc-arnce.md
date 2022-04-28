@@ -83,7 +83,8 @@ generally assigned to individuals or organizations for identification
 purposes by the local regulatory authority, such as the FCC in the
 United States.  Their presence in transmissions is often mandated by
 regulations, which works well for voice and constant-wave (CW or
-morse-code) modes, but hasn't worked well for amateur packet radio.
+morse-code) modes, but their use in amateur packet radio has been
+awkward.
 
 AX.25, for example, imposes a
 hard 6-character limit on callsign length. The longest callsign that
@@ -399,7 +400,7 @@ mechanism (using `0xFFFE` for the padding value).
 Most 9 or 12 character callsigns cannot be encoded as an EUI-48 or EUI-64,
 respectively. However, if the last character of a 9 or 12 character
 callsign is a `1`, `2`, `3`, or `4`, then the full callsign **MUST** be
-encoded by changing the last character of the callsign according to the
+modified by changing the last character according to the
 following table *before* encoding:
 
 | Original | Replacement |
@@ -410,7 +411,7 @@ following table *before* encoding:
 | `4` (31) |  `5` (32)   |
 
 This allows any 9 character callsign that ends with the
-numbers `1`, `2, `3`, or `4` to still be able to fit in an EUI-48
+numbers `1`, `2`, `3`, or `4` to still be able to fit in an EUI-48
 address.
 
 ## Decoding Process ##
@@ -482,7 +483,7 @@ and some as long as 12 characters.
 If the callsign could be encoded as an EUI-48, then you **MUST** encode your
 callsign as an EUI-48 and convert it to an EUI-64 using the standard
 EUI-48 to EUI-64 mechanism (using `0xFFFE` for the padding value). For
-larger callsigns , we follow similar logic that we did when constructing
+larger callsigns, we follow similar logic that we did when constructing
 the EUI-48:
 
        7 --Octet 1-- 0   7 --Octet 2-- 0   7 --Octet 3-- 0
@@ -532,31 +533,31 @@ So, for example:
 ## Callsigns
 
  * `N6DRC`:
-    * HAM-64: `5CAC-70F8-0000-0000`
+    * HAM-64: `5CAC-70F8` (or `5CAC-70F8-0000-0000`)
     * EUI-48: `02:5C:AC:70:F8:00`
     * EUI-64: `02:5C:AC:FF:FE:70:F8:00`
  * `N6DRC^M2` (Unescaped: `N6DRC/MOBI-2`):
-    * HAM-64: `5CAC-711F-55C8-0000`
+    * HAM-64: `5CAC-711F-55C8` (or `5CAC-711F-55C8-0000`)
     * EUI-48: `CA:5C:AC:71:1F:55`
     * EUI-64: `CA:5C:AC:FF:FE:71:1F:55`
  * `KJ6QOH/P`:
-    *  HAM-64: `4671-6CA0-F000-0000`
+    *  HAM-64: `4671-6CA0-F000` (or `4671-6CA0-F000-0000`)
     *  EUI-48: `02:46:71:6C:A0:F0`
     *  EUI-64: `02:46:71:FF:FE:6C:A0:F0`
  * `KJ6QOH-23`:
-    * HAM-64: `4671-6CA0-F220-0000`
+    * HAM-64: `4671-6CA0-F220` (or `4671-6CA0-F220-0000`)
     * EUI-48: `22:46:71:6C:A0:F2`
     * EUI-64: `22:46:71:FF:FE:6C:A0:F2`
  * `KJ6QOH-99`:
-    * HAM-64: `4671-6CA0-F344-0000`
+    * HAM-64: `4671-6CA0-F344` (or `4671-6CA0-F344-0000`)
    *  EUI-48: N/A
     * EUI-64: `02:46:71:6C:A0:F3:44:00`
  * `D9K`:
-    *  HAM-64: `1EAB-0000-0000-0000`
+    *  HAM-64: `1EAB` (or `1EAB-0000-0000-0000`)
     *  EUI-48: `02:1E:AB:00:00:00`
     *  EUI-64: `02:1E:AB:FF:FE:00:00:00`
  * `NA1SS`:
-    *  HAM-64: `57C4-79B8-0000-0000`
+    *  HAM-64: `57C4-79B8` (or `57C4-79B8-0000-0000`)
     *  EUI-48: `02:57:C4:79:B8:00`
     *  EUI-64: `02:57:C4:FF:FE:79:B8:00`
  * `VI2BMARC50`:
@@ -567,13 +568,13 @@ So, for example:
 ## IPv6 Multicast
 
  * `ff02::1`
-    *  HAM-64: `FA01-0000-0000-0000`
+    *  HAM-64: `FA01` (or `FA01-0000-0000-0000`)
     *  EUI-48: `33:33:00:00:00:01`
 
 ## IPv4 Multicast
 
  * `224.0.0.251`
-    *  HAM-64: `FBFB-0000-0000-0000`
+    *  HAM-64: `FBFB` (or `FBFB-0000-0000-0000`)
     *  EUI-48: `01:00:5e:00:00:01`
 
 # Functional Comparisons
