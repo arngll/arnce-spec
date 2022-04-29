@@ -541,11 +541,11 @@ So, for example:
     * EUI-48: `CA:5C:AC:71:1F:55`
     * EUI-64: `CA:5C:AC:FF:FE:71:1F:55`
  * `KJ6QOH/P`:
-    *  HAM-64: `4671-6CA0-F000` (or `4671-6CA0-F000-0000`)
-    *  EUI-48: `02:46:71:6C:A0:F0`
-    *  EUI-64: `02:46:71:FF:FE:6C:A0:F0`
+    *  HAM-64: `4671-6CA0-E9C0` (or `4671-6CA0-E9C0-0000`)
+    *  EUI-48: `C2:46:71:6C:A0:E9`
+    *  EUI-64: `C2:46:71:FF:FE:6C:A0:E9`
  * `KJ6QOH-23`:
-    * HAM-64: `4671-6CA0-F220` (or `4671-6CA0-F220-0000`)
+    * HAM-64: `4671-6CA0-F226` (or `4671-6CA0-F226-0000`)
     * EUI-48: `22:46:71:6C:A0:F2`
     * EUI-64: `22:46:71:FF:FE:6C:A0:F2`
  * `KJ6QOH-2X`:
@@ -568,6 +568,14 @@ So, for example:
     *  HAM-64: `8B05-0E89-7118-A8C0`
     *  EUI-48: N/A
     *  EUI-64: `C2:8B:05:0E:89:71:18:A8`
+* `VI2BMARC50-1`:
+    *  HAM-64: `8B05-0E89-7118-AECC`
+    *  EUI-48: N/A
+    *  EUI-64: `BA:8B:05:0E:89:71:18:AE`
+* `VI2BMARC50-X`:
+    *  HAM-64: `8B05-0E89-7118-AEC8`
+    *  EUI-48: N/A
+    *  EUI-64: N/A
 
 ## IPv6 Multicast
 
