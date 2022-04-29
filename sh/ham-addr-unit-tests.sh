@@ -96,6 +96,8 @@ test_cmd mac-to-callsign 70:B3:F6:84:0E:71 ""
 test_cmd mac-to-callsign 7A:B3:F6:84:0E:71 "143UEFRF1"
 test_cmd mac-to-callsign 72:FF:F6:84:0E:71 ""
 
+test_cmd ham-addr-to-callsign FF02-ABCD ""
+
 # TODO: Test escaping of 'N6DRC/MOBI-2'
 
 summarize
