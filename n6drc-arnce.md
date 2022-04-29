@@ -583,6 +583,13 @@ So, for example:
 
 # Functional Comparisons
 
+There are several other numeric callsign encodings that are
+either being proposed or are actively in use. Some are limited
+only to encoding callsigns in EUI-48 addresses, others are
+full-fledged link-layer addressing modes like ARNCE. This
+appendix discusses a few of these different encodings and
+compares them to the mechanisms defined in this document.
+
 ## M17
 
 [M17][M17] is a digital radio protocol intended for amateur
@@ -633,16 +640,57 @@ Notable differences in the character set are:
 [M17]: https://spec.m17project.org
 [M17-Addr]: https://spec.m17project.org/appendix/address-encoding
 
+## HAMNET
+
+[HAMNET](http://hamnet.eu) in Europe has a callsign-to-mac-address
+encoding for embedding callsigns in MAC addresses for use with
+commercial 802.11-based equipment.
+
+The following encoding is used to encode a 6-character
+callsign and 8-bit station identifier into an EUI-48 address:
+
+```
+ Byte 6   Byte 5   Byte 4   Byte 3   Byte 2   Byte 1
+RRRRRRXX RRRRRRNN RRRRRRSS RRRRRRSS RRRRRRSS RRRRRRSS
+8 Bit  1 8 Bit  1 8 Bit  1 8 Bit  1 8 Bit  1 8 Bit  1
+
+R = Bits encoding the callsign.
+S = Bits for the station identifier. (SSID)
+N = Reserved for future applications.
+X = Standardbits according to IEEE 802
+    Bit 1: 0 = unicast / 1 = multicast
+    Bit 2: 0 = globally unique / 1 = locally administered
+```
+
+The character set is the ASCII character set shifted down by 32.
+Only the characters 0-9, A-Z, and space are considered valid.
+
+When being printed, the SSID is appended to the callsign as
+a decimal number, separated with a dash (`-`).
+
+### Comparison to ARNCE EUI-48
+
+* Straightforward implementation with no multiplication,
+  division, or modular arithmetic required.
+* Callsigns are limited to 6 characters. Longer callsigns
+  cannot be encoded.
+* No provisions for callsign prefixes or suffixes other
+  than a station identifier.
+* An 8-bit SSID allows each callsign to have up to 256 unique
+  EUI-48 addresses. ARNCE's EUI-48 encoding would allow
+  over 40 different station identifiers for a 6-character
+  callsign, but over 400 for shorter callsigns.
+
 ## WSPR
 
 WSPR, the Weak Signal Propagation Reporter, uses a 28-bit
-representation for callsigns that follow the traditional
+representation for callsigns that follows the traditional
 `XXNLLL` amateur-radio format, supporting callsigns up to
 6 characters. A single WSPR packet is only 50 bits long,
 so the callsign encoding was engineered to be as dense as
 possible, at the cost of flexibility.
 
-## Composition
+### Composition
 
 Taking a look at the [source for the callsign decoder][wsprcall],
 we can see that callsigns are encoded as follows:
@@ -672,7 +720,7 @@ The characters of the callsign are stored little-endian:
 There is a special hard-coded provision for Swaziland: if the
 decoded prefix is `3D0` then the prefix is then changed to `3DA0`.
 
-## Comparison with HAM-32
+### Comparison with HAM-32
 
 This encoding is 14% smaller than HAM-32, but significantly
 less flexible:
