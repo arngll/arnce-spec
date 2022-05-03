@@ -8,14 +8,17 @@ addresses, which can be useful when operating consumer Wi-Fi equipment
 under Amateur Radio rules. It can also be useful for encoding short
 text identifiers into MAC addresses in non-radio contexts.
 
-Examples:
+### Examples ###
 
-| Callsign      | HamAddr               | EUI-48              | EUI-64                    |
-|---------------|-----------------------|---------------------|---------------------------|
-| N6DRC         | `5CAC-70F8`           | `02:5C:AC:70:F8:00` | `02:5C:AC:FF:FE:70:F8:00` |
-| KJ6QOH/P      | `4671-6CA0-E9C0`      | `C2:46:71:6C:A0:E9` | `C2:46:71:FF:FE:6C:A0:E9` |
-| AA0XXX/MOBI-4 | `0683-99D8-F5E7`      | `EA:06:83:99:D8:F5` | `EA:06:83:FF:FE:99:D8:F5` |
-| VI2BMARC50    | `8B05-0E89-7118-A8C0` | N/A                 | `C2:8B:05:0E:89:71:18:A8` |
+| Callsign        | HamAddr               | EUI-48              |
+|-----------------|-----------------------|---------------------|
+| `N6DRC`         | `5CAC-70F8`           | `02:5C:AC:70:F8:00` |
+| `KJ6QOH/P`      | `4671-6CA0-E9C0`      | `C2:46:71:6C:A0:E9` |
+| `AA0XXX/MOBI-4` | `0683-99D8-F5E7`      | `EA:06:83:99:D8:F5` |
+
+| Callsign        | HamAddr               | EUI-64                    |
+|-----------------|-----------------------|---------------------------|
+| `VI2BMARC50`    | `8B05-0E89-7118-A8C0` | `C2:8B:05:0E:89:71:18:A8` |
 
 The mechanism for reversibly translating callsigns into numeric identifiers
 is outlined in the [ARNCE technical specification (HAM-64)](n6drc-arnce.md#introduction),
